@@ -7,7 +7,7 @@
  * Author URI: https://www.vevende.com/
  *
  * @package WC_Gateway_PagosNet
- * @version 4.0.0
+ * @version 1.0.0
  * @category Gateway
  * @author Vevende SRL
  */
@@ -16,10 +16,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-require_once dirname( __FILE__ ) . '/includes/autoload.php';
-
 add_action( 'plugins_loaded', 'woo_gateway_pagosnet' );
 
 function woo_gateway_pagosnet() {
-	PagosNetPlugin::initialize();
+    spl_autoload_register('spl_autoload_register');
+    PagosNetPlugin::initialize();
+}
+
+function spl_autoload_register( $class_name ) {
+    $class_path = dirname( dirname( __FILE__ ) ) . '/classes/' . $class_name . '.php';
+    if ( file_exists( $class_path ) ) {
+        require_once $class_path;
+    }
 }

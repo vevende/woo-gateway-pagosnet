@@ -55,7 +55,7 @@ class PagosNetGateway extends WC_Payment_Gateway {
 		if ( $this->access_key != '' && $this->secret_key != '' ) {
 			// Check if the gateway is enabled in the user's country
 			return in_array( get_woocommerce_currency(),
-				apply_filters( 'woocommerce_paypal_supported_currencies', array( 'BOB', 'PYG', 'ZAR' ) ) );
+                apply_filters( 'woocommerce_pagosnet_supported_currencies', array( 'BOB', 'PYG', 'ZAR','USD' ) ) );
 		}
 
 		return false;
